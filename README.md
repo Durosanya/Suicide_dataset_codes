@@ -1,0 +1,1 @@
+The SQL queries are to give insights into suicide committed in the world from the year 2000 to 2020. The dataset was gotten from Kaggle and can be accessed via the following link https://www.kaggle.com/datasets/ronaldonyango/global-suicide-rates-1990-to-2022.
