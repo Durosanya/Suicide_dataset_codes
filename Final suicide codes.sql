@@ -118,9 +118,7 @@ FROM suicide_rates
     AND YEAR BETWEEN '2000' AND '2020'
 GROUP BY CountryName
 ORDER BY number_of_suicide DESC
-
 ;
-
 
 --correlation between suicide and inflation
 SELECT Year, InflationRate, SUM(SuicideCount) AS TotalSuicides
@@ -158,4 +156,38 @@ AND CountryName like '%Britian%'
 
 ORDER BY 
     Year;
+
+--Top 5 Years with Highest Suicide Counts
+SELECT TOP 5 Year,
+		SUM(suicideCount) AS Total_suicide
+FROM suicide_rates
+GROUP BY Year
+ORDER BY Total_suicide DESC
+;
+
+--Male vs Female Suicide Rate Comparison
+
+SELECT 
+    Sex, 
+    sum(SuicideCount) AS Total_sucide, 
+    ROUND(sum(SuicideCount) * 100 / (SELECT SUM(suicidecount) FROM suicide_rates),1) AS percentage
+FROM 
+    suicide_rates
+WHERE Sex != 'Unknown'
+GROUP BY Sex
+	;
+
+--Suicide Rates by Year 
+
+SELECT Year, SUM(SuicideCount) AS total_suicide
+FROM suicide_rates
+WHERE generation != 'Unknown'
+AND YEAR between '2000' AND '2020'
+
+GROUP BY Year
+ORDER BY  total_suicide DESC 
+	;
+
+
+
 
